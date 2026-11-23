@@ -1,59 +1,277 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏋️ Gym Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Modern web application untuk manajemen gym berbasis Laravel 12 dengan Tailwind CSS.
 
-## About Laravel
+![Laravel](https://img.shields.io/badge/Laravel-12.0-red)
+![PHP](https://img.shields.io/badge/PHP-8.2+-blue)
+![Tailwind](https://img.shields.io/badge/Tailwind-3.0-cyan)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ✨ Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 👥 Member Management
+- CRUD member (nama, telepon, alamat)
+- Search & filter member
+- Validasi input (phone unique)
+- History transaksi per member
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 📦 Package Management
+- CRUD paket membership
+- Multiple durasi (harian)
+- Pricing flexible
+- Status active/inactive
 
-## Learning Laravel
+### 💳 Transaction Management
+- Catat pembelian paket
+- Auto-calculate start & end date
+- Filter: Active / Expired / Expired Soon
+- Search by member name
+- Edit & delete transactions
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 📊 Dashboard
+- Total statistics (members, packages, transactions)
+- Recent members & transactions
+- Today's transactions & revenue
+- Chart transaksi bulanan (Chart.js)
+- Quick navigation cards
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🔐 Authentication & Security
+- Laravel Breeze authentication
+- Input validation (Form Requests)
+- Auth middleware protection
+- CSRF protection
+- Mass assignment protection
+- Production-ready security
 
-## Laravel Sponsors
+## 🛠️ Tech Stack
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+**Backend:**
+- Laravel 12
+- PHP 8.2+
+- MySQL/MariaDB (production)
+- SQLite (development)
 
-### Premium Partners
+**Frontend:**
+- Tailwind CSS 3.x
+- Alpine.js 3.x
+- Chart.js 4.x
+- Vite
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+**Development:**
+- Composer
+- NPM
+- Laravel Pint (code style)
+- PHPUnit (testing)
 
-## Contributing
+## 📦 Installation
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Prerequisites
+- PHP 8.2 or higher
+- Composer
+- Node.js & NPM
+- MySQL (for production)
 
-## Code of Conduct
+### Local Development
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. **Clone repository**
+```bash
+git clone https://github.com/RiffaYP/project_gym-laravel.git
+cd project_gym-laravel
+```
 
-## Security Vulnerabilities
+2. **Install dependencies**
+```bash
+composer install
+npm install
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. **Environment setup**
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-## License
+4. **Database setup**
+```bash
+# Edit .env for database config
+php artisan migrate
+php artisan db:seed
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. **Build assets**
+```bash
+npm run dev
+# or for production
+npm run build
+```
+
+6. **Run development server**
+```bash
+composer run dev
+# This will start: server, queue, logs, and vite
+```
+
+7. **Login**
+- URL: `http://localhost:8000`
+- Email: `admin@gymapp.com`
+- Password: `admin123`
+
+## 🚀 Deployment
+
+Lihat [DEPLOYMENT.md](DEPLOYMENT.md) untuk panduan lengkap deployment ke:
+- InfinityFree (shared hosting)
+- VPS/Dedicated server
+- Railway.app
+- Heroku
+
+## 📁 Project Structure
+
+```
+gym-app/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── DashboardController.php
+│   │   │   ├── MemberController.php
+│   │   │   ├── PackageController.php
+│   │   │   └── TransactionController.php
+│   │   └── Requests/
+│   │       ├── StoreMemberRequest.php
+│   │       ├── UpdateMemberRequest.php
+│   │       ├── StorePackageRequest.php
+│   │       └── UpdatePackageRequest.php
+│   └── Models/
+│       ├── Member.php
+│       ├── Package.php
+│       ├── Transaction.php
+│       └── User.php
+├── database/
+│   ├── migrations/
+│   ├── seeders/
+│   └── gym_management_schema.sql
+├── resources/
+│   ├── css/
+│   ├── js/
+│   └── views/
+│       ├── dashboard.blade.php
+│       ├── members/
+│       ├── packages/
+│       ├── transactions/
+│       └── errors/
+├── routes/
+│   ├── web.php
+│   └── auth.php
+├── public/
+├── .env.example
+├── .env.production.example
+├── DEPLOYMENT.md
+└── README.md
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+
+**Development:**
+```env
+APP_ENV=local
+APP_DEBUG=true
+DB_CONNECTION=sqlite
+```
+
+**Production:**
+```env
+APP_ENV=production
+APP_DEBUG=false
+DB_CONNECTION=mysql
+LOG_LEVEL=error
+QUEUE_CONNECTION=sync
+```
+
+## 🧪 Testing
+
+```bash
+# Run all tests
+php artisan test
+
+# Run specific test
+php artisan test --filter=MemberTest
+
+# Code style check
+./vendor/bin/pint --test
+```
+
+## 🎨 UI/UX Features
+
+- 🌙 Modern dark theme (zinc color palette)
+- 📱 Fully responsive (mobile, tablet, desktop)
+- ⚡ Fast page transitions
+- 🎯 Intuitive navigation with active states
+- 🔍 Real-time search (Alpine.js)
+- 📊 Interactive charts
+- 🎭 Smooth animations & micro-interactions
+- ♿ Accessibility compliant
+
+## 🔒 Security Features
+
+- ✅ Input validation (server-side)
+- ✅ CSRF protection
+- ✅ SQL injection prevention (Eloquent ORM)
+- ✅ XSS protection (Blade escaping)
+- ✅ Mass assignment protection
+- ✅ Authentication required for all CRUD
+- ✅ Password hashing (bcrypt)
+- ✅ Secure session management
+- ✅ Production environment hardening
+
+## 📝 Database Schema
+
+**Users**
+- id, name, email, password, timestamps
+
+**Members**
+- id, name, phone (unique), address, timestamps
+
+**Packages**
+- id, name, duration (days), price, timestamps
+
+**Transactions**
+- id, member_id, package_id, price, start_date, end_date, timestamps
+- Foreign keys: member_id → members, package_id → packages
+
+## 🤝 Contributing
+
+1. Fork the project
+2. Create feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Open Pull Request
+
+## 📄 License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## 👨‍💻 Author
+
+**RiffaYP**
+- GitHub: [@RiffaYP](https://github.com/RiffaYP)
+- Repository: [project_gym-laravel](https://github.com/RiffaYP/project_gym-laravel)
+
+## 🙏 Acknowledgments
+
+- Laravel Framework
+- Tailwind CSS
+- Alpine.js
+- Chart.js
+- InfinityFree Hosting
+
+## 📞 Support
+
+Jika ada pertanyaan atau issues:
+- Open issue di GitHub
+- Check [DEPLOYMENT.md](DEPLOYMENT.md) untuk troubleshooting
+
+---
+
+**Last Updated:** November 2026
+**Version:** 1.0.0
