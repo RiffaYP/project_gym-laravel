@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Package;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePackageRequest;
+use App\Http\Requests\UpdatePackageRequest;
 
 class PackageController extends Controller
 {
@@ -27,9 +29,9 @@ class PackageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePackageRequest $request)
     {
-        Package::create($request->all());
+        Package::create($request->validated());
         return redirect('/packages')->with('success', 'Paket berhasil ditambahkan');
     }
 
@@ -52,9 +54,9 @@ class PackageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Package $package)
+    public function update(UpdatePackageRequest $request, Package $package)
     {
-        $package->update($request->all());
+        $package->update($request->validated());
 
         return redirect()->route('packages.index')
         ->with('success', 'Paket berhasil diupdate');    
