@@ -95,7 +95,9 @@ public function index(Request $request)
      */
     public function edit(Transaction $transaction)
     {
-        //
+        $members = Member::all();
+        $packages = Package::all();
+        return view('transactions.edit', compact('transaction', 'members', 'packages'));
     }
 
     /**
@@ -103,7 +105,18 @@ public function index(Request $request)
      */
     public function update(Request $request, Transaction $transaction)
     {
-        //
+        $validated = $request->validate([
+            'member_id' => ['required', 'exists:members,id'],
+            'package_id' => ['required', 'exists:packages,id'],
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date', 'after_or_equal:start_date'],
+            'price' => ['required', 'numeric', 'min:0'],
+        ]);
+
+        $transaction->update($validated);
+
+        return redirect()->route('transactions.index')
+            ->with('success', 'Transaksi berhasil diupdate');
     }
 
     /**
@@ -111,6 +124,8 @@ public function index(Request $request)
      */
     public function destroy(Transaction $transaction)
     {
-        //
+        $transaction->delete();
+        return redirect()->route('transactions.index')
+            ->with('success', 'Transaksi berhasil dihapus');
     }
 }
