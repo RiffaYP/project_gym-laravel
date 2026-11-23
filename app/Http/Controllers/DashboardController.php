@@ -25,11 +25,10 @@ class DashboardController extends Controller
             'totalTransaction' => Transaction::count(),
 
             'recentMembers' => Member::latest()->take(5)->get(),
-            'recentTransactions' => Transaction::latest()->take(5)->get(),
+            'recentTransactions' => Transaction::with(['member', 'package'])->latest()->take(5)->get(),
 
             'chartData' => $chartData,
 
-            // 🔥 TAMBAHAN BARU
             'todayTransactions' => Transaction::with(['member', 'package'])
                 ->whereDate('created_at', today())
                 ->latest()
