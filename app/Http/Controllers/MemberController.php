@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreMemberRequest;
+use App\Http\Requests\UpdateMemberRequest;
 
 class MemberController extends Controller
 {
@@ -27,9 +29,9 @@ class MemberController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreMemberRequest $request)
     {
-        Member::create($request->all()); 
+        Member::create($request->validated()); 
         return redirect()->route('members.index')->with('success', 'Member created successfully.');
     }
 
@@ -46,17 +48,15 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        $member = Member::findorFail($member->id);
         return view('members.edit', compact('member'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Member $member)
+    public function update(UpdateMemberRequest $request, Member $member)
     {
-        $member = Member::findorFail($member->id);
-        $member->update($request->all());
+        $member->update($request->validated());
         return redirect()->route('members.index')->with('success', 'Member updated successfully.');
     }
 
@@ -65,7 +65,6 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        $member = Member::findorFail($member->id);
         $member->delete();
         return redirect()->route('members.index')->with('success', 'Member deleted successfully.');
     }
