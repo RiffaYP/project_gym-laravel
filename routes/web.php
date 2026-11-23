@@ -13,13 +13,13 @@ use App\Http\Controllers\DashboardController;
 
 Route::redirect('/', '/login');
 
-Route::resource('members', MemberController::class);
-Route::resource('packages', PackageController::class);
-Route::resource('transactions', TransactionController::class);
-
-Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
+    Route::resource('members', MemberController::class);
+    Route::resource('packages', PackageController::class);
+    Route::resource('transactions', TransactionController::class);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
